@@ -1,0 +1,50 @@
+<!-- pages/music/player/player.wxml  -->
+<!-- 三元运算符大部分为了兼容乐库中的最新歌曲  -->
+<view class='bg' style='background-image: url({{ playList[0].album ? playList[0].album.picUrl : playList[0].song.album.picUrl }})'></view>
+<view class='body'>
+  <view class='title'>
+    <view class='title-name'>{{ playList[0].name }}</view>
+    <view class='title-content'>{{ playList[0].artists ? playList[0].artists[0].name : playList[0].song.artists[0].name }} - {{ playList[0].album ? playList[0].album.name : playList[0].song.album.name }}</view>
+  </view>
+  <view class='sing-show'>
+    <image class='coverImgStick' src='../img/stick.png' animation="{{ stickAnimationData }}" mode="widthFix" hidden='{{ showLrc }}'></image>
+    <image class='coverImgBg' src='../img/disk.png' hidden='{{ showLrc }}'></image>
+    <image class='coverImg' animation="{{ animationData }}" src="{{ playList[0].album ? playList[0].album.picUrl : playList[0].song.album.picUrl }}" hidden='{{ showLrc }}' bindtap='changeShowLrc'></image>
+    <scroll-view scroll-y="true" hidden='{{ !showLrc }}' class='lrcView' scroll-top='{{ lrcHeight }}'  scroll-with-animation="true" bindtap='changeShowLrc'>
+      <view wx:for="{{ lrc }}" wx:key="index" class='lrc {{active[index]}}' id='lrc{{index}}'>{{ item }}</view>
+    </scroll-view>
+  </view>
+  <view class='control'>
+    <view class='control-process'>
+      <text class='process-text'>{{ currentProcess }}</text>
+      <slider 
+        bindchange='handleSliderChange'
+        bindtouchstart='handleSliderMoveStart'
+        bindtouchend='handleSliderMoveEnd'
+        min='0' 
+        max='{{ slideMax }}'
+        activeColor='#8f7df0' 
+        value='{{ sliderValue }}'></slider>
+      <text class='process-text'>{{ totalProcess }}</text>
+    </view>
+    <view class='control-view'>
+      <view class='control-button'>
+        <image src='../img/loop.png' bindtap='changeLoopStatus' wx:if='{{ loopStatus == "loop" }}'></image>
+        <image src="../img/oneloop.png" bindtap='changeLoopStatus' wx:if='{{ loopStatus == "oneLoop" }}'></image>
+        <image src="../img/random.png" bindtap='changeLoopStatus' wx:if='{{ loopStatus == "random" }}'></image>
+      </view>
+      <view class='control-button'>
+        <image src='../img/pre.png' bindtap='preMusic'></image>
+      </view>
+      <view class='control-button'>
+        <image src='{{ statusImg }}' bindtap='changeStatus'></image>
+      </view>
+      <view class='control-button'>
+        <image src='../img/next.png' bindtap='nextMusic'></image>
+      </view>
+      <view class='control-button'>
+        <image src='../img/list.png'></image>
+      </view>
+    </view>
+  </view>
+</view>

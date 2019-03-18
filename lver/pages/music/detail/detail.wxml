@@ -1,0 +1,34 @@
+<view>
+  <view class='bg' style='background-image: url({{ ListDetail.coverImgUrl }})'></view>
+  <view class='topView'>
+    <view class='imgView'>
+        <image src='{{ ListDetail.coverImgUrl }}'></image> 
+    </view>
+    <view class='introduce'>
+      <view class='introduce_Title'>{{ ListDetail.name }}</view>
+      <view class='creatorBox'>
+        <view class='creator' style='background-image:url({{ ListDetail.creator.avatarUrl }})'></view>
+        <view class='creatorText'>
+           <view>{{ ListDetail.creator.nickname }}</view> 
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='playAll'>
+    <image src='../img/playall.png'></image>
+    <view class='playAllText'>播放全部(共{{ ListDetail.trackCount }}首)</view>
+  </view>
+  <scroll-view scroll-y>
+    <view wx:for="{{ playList }}" wx:key="index">
+      <view class='song' data-id='{{ item.id }}' bindtap='hrefPlayer' data-index='{{ index }}'>
+        <view class='song_n' wx:if="{{ !(playing['index'] == index && playing['id'] == item.id) }}">{{ index + 1 }}</view>
+        <image class='song_p' src='../img/playing.png' wx:if="{{ playing['index'] == index && playing['id'] == item.id}}"></image>
+        <view class='song_b'>
+          <view class='song_t'>{{ playList[index].name }}</view>
+          <view class='song_a'>{{ playList[index].artists[0].name }} - {{ playList[index].album.name }}</view>
+        </view> 
+        <image class='song_i' src='../img/playall.png'></image>
+      </view>
+    </view>
+  </scroll-view>
+</view>

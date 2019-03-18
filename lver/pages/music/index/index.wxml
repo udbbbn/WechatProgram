@@ -1,0 +1,94 @@
+<!--index.wxml-->
+<view class="container">
+  <view class='title'>
+    <image class='avatarImg' src="{{ userInfo.profile.avatarUrl }}"></image>
+    <text class='nickName'>{{ userInfo.profile.nickname }}</text>
+    <view class='iconBox' bindtap='changeShow'>
+      <image class='icon' src='{{ indexImg }}' data-id='index'></image>
+      <image class='icon' src='{{ libImg }}' data-id='lib'></image>
+      <image class='icon' src='{{ searchImg }}' data-id='search'></image>
+    </view>
+  </view>
+  <scroll-view scroll-y class='{{ playInfo.album ? "margin_b" :"" }}' wx:if="{{ showFlag == 0 }}">
+    <view wx:for="{{ playList }}" wx:key="index" class='listBox' data-id='{{ item.id }}' bindtap='hrefDetail'>
+        <view class='ImgBox'>
+          <image class='Img' src='{{ item.coverImgUrl }}'></image>
+        </view>
+        <view class='textBox'>
+          <view class='textBox_title'>{{ item.name }}</view>
+          <view class='textBox_desc'>{{ item.trackCount }} 首</view>
+        </view>
+    </view>
+  </scroll-view>
+  <!-- 乐库  -->
+  <view class='lib' wx:if="{{ showFlag == 1 }}">
+    <view class='l_rec'>
+      <view class='l_txt'>推荐歌单</view>
+    </view>
+    <view class='l_per'>
+      <block wx:for="{{ perSong }}" wx:key="{{ index }}">
+        <view class='l_songItem' wx:if="{{ index < 3 }}" data-id="{{ item.id }}" bindtap="hrefDetail">
+          <image src='{{ item.picUrl }}' class='I_songImg'></image>
+          <view class='I_songText'>{{ item.name }}</view>
+        </view>
+      </block>
+    </view>
+    <view class='l_per'>
+      <block wx:for="{{ perSong }}" wx:key="{{ index }}">
+        <view class='l_songItem' wx:if="{{ index > 2  && index < 6}}" data-id="{{ item.id }}" bindtap="hrefDetail">
+          <image src='{{ item.picUrl }}' class='I_songImg' mode="aspectFit"></image>
+          <view class='I_songText'>{{ item.name }}</view>
+        </view>
+      </block>
+    </view>
+
+    <view class='l_rec'>
+      <view class='l_txt'>最新音乐</view>
+    </view>
+    <scroll-view scroll-y="true">
+      <view wx:for="{{ newSong }}" wx:key="index">
+        <view class='song' data-id='{{ item.id }}' bindtap='newSongHerfPlayer' data-index='{{ index }}'>
+          <view class='song_n' wx:if="{{ !(playing['index'] == index && playing['id'] == item.id) }}">{{ index + 1 }}</view>
+          <image class='song_p' src='../img/playing.png' wx:if="{{ playing['index'] == index && playing['id'] == item.id}}"></image>
+          <view class='song_b'>
+            <view class='song_t'>{{ newSong[index].name }}</view>
+            <view class='song_a'>{{ newSong[index].song.artists[0].name }} - {{ newSong[index].song.album.name }}</view>
+          </view> 
+          <image class='song_i' src='../img/playall.png'></image>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- 搜索  -->
+  <view class='search' wx:if="{{ showFlag == 2 }}">
+    <view class='s_t'>
+      <view class='s_box'>
+        <image class='s_icon' src='../img/search_gray.png'></image>
+        <input class='s_input' placeholder='搜索歌曲' bindconfirm='getSearchRes'></input>
+      </view>
+    </view>
+    <scroll-view scroll-y="true">
+      <view wx:for="{{ searchRes }}" wx:key="index">
+        <view class='song' data-id='{{ item.id }}' bindtap='searchHerfPlayer' data-index='{{ index }}' data-keyword="{{ searchRes[index].name }}">
+          <view class='song_n' wx:if="{{ !(playing['index'] == index && playing['id'] == item.id) }}">{{ index + 1 }}</view>
+          <image class='song_p' src='../img/playing.png' wx:if="{{ playing['index'] == index && playing['id'] == item.id}}"></image>
+          <view class='song_b'>
+            <view class='song_t'>{{ searchRes[index].name }}</view>
+            <view class='song_a'>{{ searchRes[index].artists[0].name }} - {{ searchRes[index].album.name }}</view>
+          </view> 
+          <image class='song_i' src='../img/playall.png'></image>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- 底部播放栏  -->
+  <view class='playSus' wx:if="{{ (playInfo.album ? playInfo.album : playInfo.song.album) && showFlag != 2 }}">
+    <view class='pBox' data-id='{{ playInfo.id }}' bindtap='hrefPlayer'>
+      <view class='pImg' style='background-image:url("{{ playInfo.album ? playInfo.album.picUrl : playInfo.song.album.picUrl }}")'></view>  
+      <view class='pTxt'>
+       <view class='pTxtTitle'>{{ playInfo.name }}</view>
+       <view class='pTxtArt'>{{ playInfo.album ? playInfo.album.name : playInfo.song.album.name}}</view>
+      </view>
+      </view>
+  </view>
+</view>

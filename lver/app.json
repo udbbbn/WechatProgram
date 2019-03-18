@@ -1,0 +1,35 @@
+{
+  "pages":[
+    "pages/music/login/login",
+    "pages/music/index/index",
+    "pages/music/player/player",
+    "pages/music/detail/detail",
+    "pages/todoList/todoList",
+    "pages/matrix/matrix"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#BB4E55",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"white",
+    "enablePullDownRefresh":false
+  },
+  "tabBar":{
+    "list": [{
+      "pagePath": "pages/matrix/matrix",
+      "iconPath": "static/matrix_gray.png",
+      "selectedIconPath": "static/matrix.png",
+      "text": "matrix"
+    },{
+      "pagePath": "pages/music/login/login",
+      "iconPath": "static/music_gray.png",
+      "selectedIconPath": "static/music.png",
+      "text": "music"
+    },{
+      "pagePath": "pages/todoList/todoList",
+      "iconPath": "static/todo_list_gray.png",
+      "selectedIconPath": "static/todo_list.png",
+      "text": "todoList"
+    }]
+  }
+}

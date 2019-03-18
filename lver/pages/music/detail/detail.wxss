@@ -1,0 +1,131 @@
+.bg{
+  width: 100%;
+  height: 180px;
+  background-size: 100% 100%;
+  filter: blur(20px);
+  position: absolute;
+  top: 0;
+  z-index: -10;
+}
+.topView{
+  display: flex;
+  height: 180px;
+}
+.imgView{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+.imgView image{
+  width: 120px;
+  height: 120px;
+}
+.introduce{
+  width: 50%;
+  padding: 30px 5px;
+  color: #fff;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.introduce_Title, .introduce_des{
+  width: 100%;
+}
+.introduce_Title{
+  color: #fff;
+}
+.creatorBox{
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+.creatorText{
+  margin-left: 10px;
+  min-width: 0;
+  flex: 1;
+}
+.creatorText > view{
+  width: auto;
+  overflow:hidden;
+  word-wrap:normal;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.creator{
+  width: 30px;
+  height: 30px;
+  background-size: 100% 100%;
+  border-radius: 50%;
+}
+.playAll{
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  display: flex;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgb(214,214,214)
+}
+.playAll image{
+  width: 20px;
+  height: 20px;
+}
+.playAllText{
+  margin-left: 20px;
+  line-height: 20px;
+  font-size: 15px;
+  color: #666 ;
+}
+.song{
+  display: flex;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(214,214,214, 0.2);
+}
+.song_n{
+  display: flex;
+  width: 50px;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+}
+.song_p{
+  display: flex;
+  width: 20px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  margin: 14px 15px;
+}
+.song_b{
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.song_t{
+  width: 100%;
+  font-size: 16px;
+  overflow: hidden;
+  word-wrap: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.song_a{
+  font-size: 12px;
+  color: #888;
+  overflow: hidden;
+  word-wrap: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.song_i{
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 10px;
+}

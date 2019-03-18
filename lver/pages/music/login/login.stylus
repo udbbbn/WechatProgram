@@ -1,0 +1,25 @@
+
+page 
+  height 100%
+  display flex
+  justify-content center
+  align-items center
+
+
+.container 
+  width 80%
+
+
+input 
+  height 80rpx
+  margin-bottom 40rpx
+  border 1px solid rgb(187, 78, 85)
+  border-radius 10rpx
+  text-align center
+  color rgb(187, 78, 85)
+  
+input
+  ::-webkit-input-placeholder {color:rgb(187, 78, 85)}
+  ::-moz-placeholder {color:rgb(187, 78, 85)}
+  :-ms-input-placeholder {color:rgb(187, 78, 85)}
+  :placeholder {color:rgb(187, 78, 85)}
